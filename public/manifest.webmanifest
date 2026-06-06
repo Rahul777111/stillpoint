@@ -1,0 +1,16 @@
+{
+  "name": "Stillpoint — deep work sanctuary",
+  "short_name": "Stillpoint",
+  "description": "Generative focus environments. Step into a world, start a timer, and let browser-generated soundscapes carry your deepest work.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0A0C10",
+  "theme_color": "#0A0C10",
+  "categories": ["productivity", "lifestyle"],
+  "icons": [
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

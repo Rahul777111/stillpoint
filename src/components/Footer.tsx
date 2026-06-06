@@ -10,7 +10,7 @@ const COLS = [
   { title: 'Product', links: [['Worlds', 'worlds'], ['The Ritual', 'ritual'], ['Pricing', 'pricing'], ['Gear', 'gear']] as const },
 ];
 
-export function Footer({ onStart }: { onStart: () => void }) {
+export function Footer({ onStart, onOpenMixer }: { onStart: () => void; onOpenMixer: () => void }) {
   return (
     <footer className="relative border-t border-white/10 py-16">
       <div className="container-site">
@@ -36,6 +36,9 @@ export function Footer({ onStart }: { onStart: () => void }) {
                       </button>
                     </li>
                   ))}
+                  <li>
+                    <button onClick={onOpenMixer} className="text-sm text-mist-muted transition-colors hover:text-mist">Sound Mixer</button>
+                  </li>
                 </ul>
               </div>
             ))}

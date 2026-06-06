@@ -10,6 +10,7 @@ export interface Stats {
   longestStreak: number;
   lastDay: string | null;
   pro: boolean;
+  history: Record<string, number>;
 }
 
 const DEFAULT: Stats = {
@@ -19,6 +20,7 @@ const DEFAULT: Stats = {
   longestStreak: 0,
   lastDay: null,
   pro: false,
+  history: {},
 };
 
 const dayKey = (d = new Date()) =>
@@ -51,6 +53,7 @@ export function useStats() {
         currentStreak = 1;
       }
       longestStreak = Math.max(longestStreak, currentStreak);
+      const history = { ...prev.history, [today]: (prev.history[today] ?? 0) + minutes };
       return {
         ...prev,
         sessions: prev.sessions + 1,
@@ -58,6 +61,7 @@ export function useStats() {
         currentStreak,
         longestStreak,
         lastDay: today,
+        history,
       };
     });
   }, []);

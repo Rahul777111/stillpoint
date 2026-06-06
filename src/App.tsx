@@ -10,6 +10,8 @@ import { Support } from './components/Support';
 import { Footer } from './components/Footer';
 import { FocusOverlay } from './components/FocusOverlay';
 import { UpgradeModal } from './components/UpgradeModal';
+import { MixerOverlay } from './components/MixerOverlay';
+import { StatsPanel } from './components/StatsPanel';
 import { WORLDS, type World } from './data/worlds';
 import { useStats } from './lib/useStats';
 
@@ -17,13 +19,15 @@ export default function App() {
   const { stats, recordSession, unlockPro } = useStats();
   const [world, setWorld] = useState<World>(WORLDS[0]);
   const [sessionOpen, setSessionOpen] = useState(false);
+  const [mixerOpen, setMixerOpen] = useState(false);
+  const [statsOpen, setStatsOpen] = useState(false);
   const [upgradeWorld, setUpgradeWorld] = useState<World | null>(null);
 
-  // lock body scroll while immersive overlay is open
+  const anyOverlay = sessionOpen || mixerOpen;
   useEffect(() => {
-    document.body.style.overflow = sessionOpen ? 'hidden' : '';
+    document.body.style.overflow = anyOverlay ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [sessionOpen]);
+  }, [anyOverlay]);
 
   const enterWorld = (w: World) => {
     if (w.premium && !stats.pro) { setUpgradeWorld(w); return; }
@@ -38,40 +42,37 @@ export default function App() {
 
   return (
     <div className="grain min-h-screen bg-ink">
-      <Nav onStart={startDefault} />
+      <Nav onStart={startDefault} onOpenMixer={() => setMixerOpen(true)} onOpenStats={() => setStatsOpen(true)} />
       <main>
         <Hero onStart={startDefault} />
-        <Ritual />
+        <Ritual onOpenMixer={() => setMixerOpen(true)} />
         <Worlds pro={stats.pro} onEnter={enterWorld} />
         <Pricing pro={stats.pro} onStart={startDefault} onRestore={unlockPro} />
         <Gear />
         <Support />
       </main>
-      <Footer onStart={startDefault} />
+      <Footer onStart={startDefault} onOpenMixer={() => setMixerOpen(true)} />
 
       <AnimatePresence>
         {sessionOpen && (
           <FocusOverlay
-            world={world}
-            worlds={WORLDS}
-            pro={stats.pro}
-            stats={stats}
-            onSelectWorld={setWorld}
-            onComplete={recordSession}
-            onUpgrade={() => setUpgradeWorld(world)}
-            onClose={() => setSessionOpen(false)}
+            world={world} worlds={WORLDS} pro={stats.pro} stats={stats}
+            onSelectWorld={setWorld} onComplete={recordSession}
+            onUpgrade={() => setUpgradeWorld(world)} onClose={() => setSessionOpen(false)}
           />
         )}
       </AnimatePresence>
 
       <AnimatePresence>
-        {upgradeWorld && (
-          <UpgradeModal
-            world={upgradeWorld}
-            onRestore={unlockPro}
-            onClose={() => setUpgradeWorld(null)}
-          />
-        )}
+        {mixerOpen && <MixerOverlay onClose={() => setMixerOpen(false)} />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {statsOpen && <StatsPanel stats={stats} onClose={() => setStatsOpen(false)} />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {upgradeWorld && <UpgradeModal world={upgradeWorld} onRestore={unlockPro} onClose={() => setUpgradeWorld(null)} />}
       </AnimatePresence>
     </div>
   );

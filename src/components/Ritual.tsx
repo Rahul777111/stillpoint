@@ -27,7 +27,7 @@ function EqBars() {
   );
 }
 
-export function Ritual() {
+export function Ritual({ onOpenMixer }: { onOpenMixer: () => void }) {
   return (
     <section id="ritual" className="relative border-t border-white/5 py-28 sm:py-36">
       <div className="container-site">
@@ -65,6 +65,7 @@ export function Ritual() {
                 randomised events. Rain never loops. The fire never repeats. It costs nothing to
                 run, works fully offline, and never plays the same minute twice.
               </p>
+              <button onClick={onOpenMixer} className="btn-ghost mt-6">Open the Sound Mixer</button>
             </div>
             <div className="flex justify-center lg:justify-end">
               <EqBars />
