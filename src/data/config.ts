@@ -9,7 +9,7 @@ export const SITE = {
   tagline: 'Your deep work sanctuary',
   description:
     'Stillpoint turns focus into a ritual. Step into a living world, start a timer, and let generative soundscapes carry your deepest work.',
-  url: (env.VITE_SITE_URL as string) || 'https://stillpoint.app',
+  url: (env.VITE_SITE_URL as string) || 'https://stillpoint-livid.vercel.app',
   handle: '@stillpointapp',
 };
 

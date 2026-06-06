@@ -9,7 +9,7 @@
 Step into a living world, start a timer, and let generative soundscapes carry your deepest work.
 Free, no account, works offline.
 
-**[ Live site ](https://stillpoint.app)** · built with React, Vite, Tailwind and the Web Audio API
+**[ Live site ](https://stillpoint-livid.vercel.app)** · built with React, Vite, Tailwind and the Web Audio API
 
 </div>
 
