@@ -26,3 +26,6 @@ dist-ssr
 # deploy
 .vercel
 dist
+ACTIVATE.md
+GROWTH.md
+docs/screenshots/pricing.jpg

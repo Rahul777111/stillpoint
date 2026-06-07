@@ -21,8 +21,7 @@ Stillpoint is a focus app that turns deep work into a ritual. You pick one of si
 worlds, set a timer, and a calm voice settles you in while a generative soundscape rises around
 you. When the session ends you get a shareable focus card and your streak ticks up.
 
-It is designed to be genuinely useful, quietly beautiful, and shareable, with a clean path to
-revenue baked in from day one.
+It is designed to be genuinely useful, quietly beautiful, and shareable.
 
 <table>
   <tr>
@@ -30,8 +29,7 @@ revenue baked in from day one.
     <td><img src="docs/screenshots/worlds.jpg" alt="Worlds" /></td>
   </tr>
   <tr>
-    <td><img src="docs/screenshots/session.jpg" alt="Focus session" /></td>
-    <td><img src="docs/screenshots/pricing.jpg" alt="Pricing" /></td>
+    <td colspan="2"><img src="docs/screenshots/session.jpg" alt="Focus session" /></td>
   </tr>
 </table>
 
@@ -46,7 +44,6 @@ revenue baked in from day one.
 - **A real focus timer** — 15 / 25 / 50 / 90 minute presets with a breathing progress ring, pause and resume, and a guided voice intention at the start and finish.
 - **Streaks and history** — daily streaks, total sessions and hours, stored locally. No account, no tracking.
 - **Shareable focus cards** — every completed session renders a canvas image you can post or save. This is the growth loop.
-- **Monetization, ready to switch on** — Pro (one-time), a downloadable pack, a tip jar, and an honest affiliate gear section. All links live in one config file.
 - **Fast and accessible** — ~128 KB of gzipped JS, respects `prefers-reduced-motion`, keyboard friendly, WCAG-minded contrast, full Open Graph and structured data.
 
 ## The audio engine
@@ -81,25 +78,10 @@ npm run build    # production build to dist/
 npm run preview  # preview the build
 ```
 
-## Make money with it
-
-Everything is wired. You just plug in your accounts. Full step-by-step in
-**[ACTIVATE.md](ACTIVATE.md)**. The short version:
-
-1. Create a Stripe Payment Link or Gumroad product for Pro, paste the URL.
-2. Add a Buy Me a Coffee / Ko-fi link for the tip jar.
-3. Drop your Amazon Associates (or other) affiliate links into the gear section.
-4. Set the values as environment variables in Vercel, or edit [`src/data/config.ts`](src/data/config.ts).
-
-## Grow it
-
-A concrete launch and growth plan lives in **[GROWTH.md](GROWTH.md)** — where to post, what to
-say, and how the share-card loop compounds.
-
 ## Deploy
 
 This repo deploys to Vercel with zero config (Vite preset). Push to GitHub, import the repo in
-Vercel, and set the environment variables from `ACTIVATE.md`.
+Vercel, and you are live.
 
 ## License
 
