@@ -41,7 +41,7 @@ revenue baked in from day one.
 - **Installable PWA** — add to home screen and run fully offline thanks to a service worker.
 - **Stats dashboard** — streaks, total sessions and hours, plus a 14-week focus heatmap, all stored on-device.
 - **Open-ended ambient mode** — skip the timer and just stay in the world for as long as you like. Space bar starts and pauses.
-- **Six immersive worlds** — rainforest, deep ocean, alpine snowfall, Tokyo rain, fireside cabin, desert night. Each one is a hand-tuned scene with its own soundscape.
+- **Six living worlds** — rainforest, deep ocean, alpine snowfall, Tokyo rain, fireside cabin, desert night. Each is a generative motion-video scene that breathes and moves behind your session, with its own soundscape.
 - **Generative audio, not streamed** — every soundscape is synthesised live in the browser from layered noise plus randomised droplet, crackle and chirp events. Nothing loops, nothing repeats, and it works fully offline. See [`src/lib/audio.ts`](src/lib/audio.ts).
 - **A real focus timer** — 15 / 25 / 50 / 90 minute presets with a breathing progress ring, pause and resume, and a guided voice intention at the start and finish.
 - **Streaks and history** — daily streaks, total sessions and hours, stored locally. No account, no tracking.
