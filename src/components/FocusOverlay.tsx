@@ -7,6 +7,7 @@ import type { World } from '../data/worlds';
 import { TIMER_PRESETS } from '../data/config';
 import { engine } from '../lib/audio';
 import type { Stats } from '../lib/useStats';
+import { loadPrefs, savePrefs } from '../lib/prefs';
 import { ShareCard } from './ShareCard';
 
 type Phase = 'setup' | 'running' | 'paused' | 'done';
@@ -32,12 +33,13 @@ export function FocusOverlay({
   world, worlds, pro, stats, onSelectWorld, onComplete, onUpgrade, onClose,
 }: Props) {
   const reduce = useReducedMotion();
+  const initialPrefs = useRef(loadPrefs()).current;
   const [phase, setPhase] = useState<Phase>('setup');
-  const [minutes, setMinutes] = useState(25); // 0 = open-ended ambient
-  const [remaining, setRemaining] = useState(25 * 60);
+  const [minutes, setMinutes] = useState(initialPrefs.minutes); // 0 = open-ended ambient
+  const [remaining, setRemaining] = useState(initialPrefs.minutes * 60);
   const [elapsed, setElapsed] = useState(0);
-  const [volume, setVolume] = useState(0.8);
-  const [voiceOn, setVoiceOn] = useState(true);
+  const [volume, setVolume] = useState(initialPrefs.volume);
+  const [voiceOn, setVoiceOn] = useState(initialPrefs.voiceOn);
   const [finishedMinutes, setFinishedMinutes] = useState(0);
 
   const endRef = useRef(0);
@@ -108,6 +110,10 @@ export function FocusOverlay({
   }, [phase, pro, volume, onSelectWorld, onUpgrade]);
 
   useEffect(() => { if (phase === 'running') engine.setVolume(volume); }, [volume, phase]);
+
+  useEffect(() => {
+    savePrefs({ ...loadPrefs(), minutes, volume, voiceOn });
+  }, [minutes, volume, voiceOn]);
 
   // keyboard: esc closes, space controls transport
   useEffect(() => {

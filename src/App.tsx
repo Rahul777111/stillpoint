@@ -12,12 +12,13 @@ import { FocusOverlay } from './components/FocusOverlay';
 import { UpgradeModal } from './components/UpgradeModal';
 import { MixerOverlay } from './components/MixerOverlay';
 import { StatsPanel } from './components/StatsPanel';
-import { WORLDS, type World } from './data/worlds';
+import { WORLDS, getWorld, type World } from './data/worlds';
 import { useStats } from './lib/useStats';
+import { loadPrefs, savePrefs } from './lib/prefs';
 
 export default function App() {
   const { stats, recordSession, unlockPro } = useStats();
-  const [world, setWorld] = useState<World>(WORLDS[0]);
+  const [world, setWorld] = useState<World>(() => getWorld(loadPrefs().worldId));
   const [sessionOpen, setSessionOpen] = useState(false);
   const [mixerOpen, setMixerOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
@@ -28,6 +29,10 @@ export default function App() {
     document.body.style.overflow = anyOverlay ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [anyOverlay]);
+
+  useEffect(() => {
+    savePrefs({ ...loadPrefs(), worldId: world.id });
+  }, [world]);
 
   const enterWorld = (w: World) => {
     if (w.premium && !stats.pro) { setUpgradeWorld(w); return; }

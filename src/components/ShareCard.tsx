@@ -27,7 +27,18 @@ export function ShareCard({ minutes, world, stats }: Props) {
     img.src = world.image;
 
     const draw = async () => {
-      try { await (document as Document & { fonts: FontFaceSet }).fonts.ready; } catch { /* ignore */ }
+      const docFonts = (document as Document & { fonts: FontFaceSet }).fonts;
+      try {
+        // Ensure the exact weights/families the canvas draws with are loaded,
+        // otherwise the first render falls back to a system font.
+        await Promise.all([
+          docFonts.load('600 200px "Cabinet Grotesk"'),
+          docFonts.load('600 34px "Cabinet Grotesk"'),
+          docFonts.load('500 56px "General Sans"'),
+          docFonts.load('500 38px "General Sans"'),
+        ]);
+        await docFonts.ready;
+      } catch { /* ignore */ }
 
       // cover-draw background
       const ar = SIZE / SIZE;
