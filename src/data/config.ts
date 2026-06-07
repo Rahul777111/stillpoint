@@ -24,7 +24,7 @@ export const LINKS = {
   // Newsletter form action (Formspree / ConvertKit form endpoint). Empty = inline thank-you only.
   newsletter: (env.VITE_NEWSLETTER_ACTION as string) || '',
   twitter: (env.VITE_TWITTER_URL as string) || 'https://twitter.com/stillpointapp',
-  github: (env.VITE_GITHUB_URL as string) || 'https://github.com/stillpoint-app/stillpoint',
+  github: (env.VITE_GITHUB_URL as string) || 'https://github.com/Rahul777111/stillpoint',
 };
 
 // Price shown on the Pro card. Purely presentational — the real price lives in Stripe/Gumroad.
