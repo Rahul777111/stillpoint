@@ -111,6 +111,9 @@ export function FocusOverlay({
 
   useEffect(() => { if (phase === 'running') engine.setVolume(volume); }, [volume, phase]);
 
+  // Turning voice off must silence the clip that is already playing, not just future ones.
+  useEffect(() => { if (!voiceOn) { try { voiceRef.current?.pause(); } catch { /* noop */ } } }, [voiceOn]);
+
   useEffect(() => {
     savePrefs({ ...loadPrefs(), minutes, volume, voiceOn });
   }, [minutes, volume, voiceOn]);
@@ -157,7 +160,7 @@ export function FocusOverlay({
       <div className="absolute inset-0 bg-ink/55" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-ink/60" />
 
-      <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-5 sm:p-7">
+      <div className="absolute inset-x-0 top-0 z-30 flex items-center justify-between p-5 sm:p-7">
         <div>
           <p className="font-display text-lg font-semibold text-mist">{world.name}</p>
           <p className="text-sm text-mist-muted">{world.location}</p>
@@ -254,7 +257,7 @@ export function FocusOverlay({
       </div>
 
       {phase !== 'done' && (
-        <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-6">
+        <div className="absolute inset-x-0 bottom-0 z-30 p-4 sm:p-6">
           <div className="container-site flex gap-3 overflow-x-auto pb-1">
             {worlds.map((w) => {
               const locked = w.premium && !pro;
