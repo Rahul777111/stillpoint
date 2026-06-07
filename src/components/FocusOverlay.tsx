@@ -150,10 +150,11 @@ export function FocusOverlay({
       className="fixed inset-0 z-[100] overflow-hidden bg-ink"
     >
       <AnimatePresence mode="wait">
-        <motion.img
-          key={world.id} src={world.image} alt={world.name}
-          initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: reduce ? 1.05 : 1.12 }} exit={{ opacity: 0 }}
-          transition={{ opacity: { duration: 1.1 }, scale: { duration: 30, ease: 'easeInOut' } }}
+        <motion.video
+          key={world.id} src={world.video} poster={world.image}
+          autoPlay muted loop playsInline
+          initial={{ opacity: 0, scale: 1.06 }} animate={{ opacity: 1, scale: reduce ? 1.04 : 1.1 }} exit={{ opacity: 0 }}
+          transition={{ opacity: { duration: 1.2 }, scale: { duration: 32, ease: 'easeInOut' } }}
           className="absolute inset-0 h-full w-full object-cover"
         />
       </AnimatePresence>

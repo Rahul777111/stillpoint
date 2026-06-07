@@ -7,6 +7,7 @@ export interface World {
   tagline: string;
   description: string;
   image: string;
+  video: string;
   accent: string; // hex used for per-world UI tinting
   premium: boolean;
   layers: SoundLayer[];
@@ -21,6 +22,7 @@ export const WORLDS: World[] = [
     description:
       'Mist drifts between old-growth pines as light rain settles the world. A clear creek runs nearby and unseen birds call through the canopy.',
     image: '/worlds/rainforest.jpg',
+    video: '/worlds/rainforest.mp4',
     accent: '#7FB069',
     premium: false,
     layers: [
@@ -39,6 +41,7 @@ export const WORLDS: World[] = [
     description:
       'Long, slow waves rise and fall in a vast calm. Low water pressure hums beneath the surface as the swell breathes in and out.',
     image: '/worlds/ocean.jpg',
+    video: '/worlds/ocean.mp4',
     accent: '#4FA3C7',
     premium: false,
     layers: [
@@ -55,6 +58,7 @@ export const WORLDS: World[] = [
     description:
       'Snow falls without a sound across the peaks. A gentle, shifting wind moves over the ridgeline, soft and endless.',
     image: '/worlds/snowfall.jpg',
+    video: '/worlds/snowfall.mp4',
     accent: '#9AB4D4',
     premium: false,
     layers: [
@@ -71,6 +75,7 @@ export const WORLDS: World[] = [
     description:
       'Steady rain falls on an empty lane. Water runs from the eaves, a far-off hum of the city rolls under it all, and the night feels yours alone.',
     image: '/worlds/tokyo.jpg',
+    video: '/worlds/tokyo.mp4',
     accent: '#E08A5B',
     premium: true,
     layers: [
@@ -88,6 +93,7 @@ export const WORLDS: World[] = [
     description:
       'A wood fire pops and settles in the hearth while rain taps the glass. Warm, close, and safe from the weather outside.',
     image: '/worlds/fireside.jpg',
+    video: '/worlds/fireside.mp4',
     accent: '#E7943B',
     premium: true,
     layers: [
@@ -105,6 +111,7 @@ export const WORLDS: World[] = [
     description:
       'A wide, still desert beneath a river of stars. A dry breeze moves over the dunes while crickets keep the dark company.',
     image: '/worlds/desert.jpg',
+    video: '/worlds/desert.mp4',
     accent: '#C8A24A',
     premium: true,
     layers: [
